@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-function AddStudent({ handleSubmit }) {
-  const [id, setId] = useState("");
-  const [fName, setFname] = useState("");
-  const [lName, setLname] = useState("");
-  let student = { _id: id, firstName: fName, lastName: lName };
-
+function AddPlayer(props) {
+  const [_id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [battingAvg, setBattingAvg] = useState("");
+  const [type, setType] = useState("");
+  const player = { _id: _id, name: name, battingAvg: battingAvg, type: type };
   return (
     <div
       class="modal fade"
-      id="addId"
+      id="addModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -17,7 +17,9 @@ function AddStudent({ handleSubmit }) {
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Add Student</h5>
+            <h5 class="modal-title" id="exampleModalLabel">
+              Add Player
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -28,35 +30,57 @@ function AddStudent({ handleSubmit }) {
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label class="form-label">ID</label>
+                <label for="exampleInputEmail1" class="form-label">
+                  Id
+                </label>
                 <input
                   type="number"
                   class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
                   onChange={(event) => {
-                    // console.log(event.target.value);
                     setId(event.target.value);
                   }}
                 />
               </div>
               <div class="mb-3">
-                <label class="form-label">First Name</label>
+                <label for="exampleInputEmail1" class="form-label">
+                  Name
+                </label>
                 <input
                   type="text"
                   class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
                   onChange={(event) => {
-                    // console.log(event.target.value);
-                    setFname(event.target.value);
+                    setName(event.target.value);
                   }}
                 />
               </div>
               <div class="mb-3">
-                <label class="form-label">Last Name</label>
+                <label for="exampleInputEmail1" class="form-label">
+                  Batting Average
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  onChange={(event) => {
+                    setBattingAvg(event.target.value);
+                  }}
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">
+                  Type
+                </label>
                 <input
                   type="text"
                   class="form-control"
+                  id="exampleInputPassword1"
                   onChange={(event) => {
-                    // console.log(event.target.value);
-                    setLname(event.target.value);
+                    setType(event.target.value);
                   }}
                 />
               </div>
@@ -73,7 +97,8 @@ function AddStudent({ handleSubmit }) {
             <button
               type="button"
               class="btn btn-primary"
-              onClick={() => handleSubmit(student)}
+              data-bs-dismiss="modal"
+              onClick={() => props.handleGetData(player)}
             >
               Save
             </button>
@@ -84,4 +109,4 @@ function AddStudent({ handleSubmit }) {
   );
 }
 
-export default AddStudent;
+export default AddPlayer;
