@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddPlayer from "./AddPlayer";
+import EditData from "./EditPlayer";
+import EditPlayer from "./EditPlayer";
 //CRUD
 //C for create
 //R for Read
@@ -26,9 +28,23 @@ const defaultPlayersInfo = [
 
 function ShowData() {
   const [state, setState] = useState(defaultPlayersInfo);
-  console.log(...state);
+  const [editData, setEditData] = useState("");
+  const [id, setId] = useState("");
+
   const handleGetData = (player) => {
     setState([...state, player]);
+  };
+  const editId = (id) => {
+    const findData = state.find((item) => item._id === id);
+    setEditData(findData);
+    setId(id);
+  };
+
+  const handleEdit = (editPlayer) => {
+    const copyState = [...state];
+    const findInd = copyState.findIndex((item) => item._id === id);
+    copyState[findInd] = editPlayer;
+    setState(copyState);
   };
   return (
     <div>
@@ -51,7 +67,14 @@ function ShowData() {
                 <td>{player.battingAvg}</td>
                 <td>{player.type}</td>
                 <td>
-                  <button className="btn btn-primary me-2">Edit</button>
+                  <button
+                    className="btn btn-primary me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editModal"
+                    onClick={() => editId(player._id)}
+                  >
+                    Edit
+                  </button>
                   <button className="btn btn-danger">Delete</button>
                 </td>
               </tr>
@@ -67,6 +90,7 @@ function ShowData() {
         Add Player
       </button>
       <AddPlayer handleGetData={handleGetData} />
+      <EditPlayer editData={editData} handleEdit={handleEdit} />
     </div>
   );
 }
