@@ -1,11 +1,26 @@
 import React from "react";
-import ShowData from "./component/ShowData";
+import Navbar from "./component/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./component/Home";
+import Courses from "./component/Courses";
+import Contact from "./component/Contact";
+import About from "./component/About";
+import StudentList from "./component/StudentList";
+import FindMobile from "./component/FindMobile";
 
 function App() {
   return (
-    <>
-      <ShowData />
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/student-list" element={<StudentList />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/mobile" element={<FindMobile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

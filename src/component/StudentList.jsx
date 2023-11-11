@@ -26,7 +26,7 @@ const defaultPlayersInfo = [
 ];
 // props is an object
 
-function ShowData() {
+function StudentList() {
   const [state, setState] = useState(defaultPlayersInfo);
   const [editData, setEditData] = useState("");
   const [id, setId] = useState("");
@@ -95,4 +95,4 @@ function ShowData() {
   );
 }
 
-export default ShowData;
+export default StudentList;
